@@ -7,6 +7,11 @@ body {
   margin: 0 auto;
 }
 
+.add-area,
+.list-area {
+  margin-top: 4rem;
+}
+
 .add-area__form input {
   height: 30px;
   padding: 0 8px;
@@ -22,4 +27,16 @@ body {
 
 .add-area__form button:hover {
   cursor: pointer;
+}
+
+.list-area__table {
+  width: 100%;
+  text-align: left;
+  background-color: lightgray;
+  border-radius: 3px;
+}
+
+.list-area__table th,
+.list-area__table td {
+  padding: 12px;
 }
