@@ -22,7 +22,7 @@ function addEmployee(event) {
       <td>${idInput.value}</td>
       <td>${titleInput.value}</td>
       <td>${annualSalaryInput.value}</td>
-      <td><button>Delete</button></td>
+      <td><button onClick="deleteEmployee(event)">Delete</button></td>
     </tr>
   `;
 
@@ -38,4 +38,9 @@ function resetForm() {
   document.querySelector("#idInput").value = '';
   document.querySelector("#titleInput").value = '';
   document.querySelector("#salaryInput").value = '';
+}
+
+// Add function to delete employee entries
+function deleteEmployee(event) {
+  event.target.parentNode.parentNode.remove();
 }
