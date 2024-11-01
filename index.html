@@ -7,14 +7,14 @@
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="main-container">
+  <div class="container">
     <header>
       <h1>Salary Calculator</h1>
     </header>
     <main>
-      <section>
+      <section class="add-area">
         <h2>Add Employee</h2>
-        <form class="add-employee-form">
+        <form class="add-area__form">
           <input type="text" placeholder="First Name" data-testid="firstNameInput">
           <input type="text" placeholder="Last Name" data-testid="lastNameInput">
           <input type="text" placeholder="ID" data-testid="idInput">
@@ -23,9 +23,9 @@
           <button data-testid="submitButton">Submit</button>
         </form>
       </section>
-      <section>
+      <section class="list-area">
         <h2>Employees</h2>
-        <table>
+        <table class="list-area__table">
           <thead>
             <th>First Name</th>
             <th>Last Name</th>
@@ -33,6 +33,14 @@
             <th>Title</th>
             <th>Annual Salary</th>
           </thead>
+          <tbody>
+            <tr>Brian</tr>
+            <tr>Larson</tr>
+            <tr>821</tr>
+            <tr>Prime Student!</tr>
+            <tr>$0</tr>
+            <tr><button>Delete</button></tr>
+          </tbody>
         </table>
       </section>
     </main>

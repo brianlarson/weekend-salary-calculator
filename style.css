@@ -2,17 +2,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.main-container {
+.container {
   max-width: 60rem;
   margin: 0 auto;
 }
 
-.add-employee-form input {
+.add-area__form input {
   height: 30px;
   padding: 0 8px;
 }
 
-.add-employee-form button {
+.add-area__form button {
   display: block;
   margin-top: 10px;
   height: 34px;
@@ -20,6 +20,6 @@ body {
   font-weight: bold;
 }
 
-.add-employee-form button:hover {
+.add-area__form button:hover {
   cursor: pointer;
 }
