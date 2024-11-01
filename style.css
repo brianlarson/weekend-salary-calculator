@@ -40,3 +40,10 @@ body {
 .list-area__table td {
   padding: 12px;
 }
+
+.list-area__table tbody tr:nth-child(odd){
+  background: #fcfcfc;
+}
+.list-area__table tbody tr:nth-child(even){
+  background: #dcdcdc;
+}
