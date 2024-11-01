@@ -6,3 +6,15 @@ body {
   height: 30px;
   padding: 0 8px;
 }
+
+.add-employee-form button {
+  display: block;
+  margin-top: 10px;
+  height: 30px;
+  padding: 0 32px;
+  text-align: right;
+}
+
+.add-employee-form button:hover {
+  cursor: pointer;
+}
