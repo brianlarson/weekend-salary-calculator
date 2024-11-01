@@ -1,9 +1,9 @@
 // Get all form inputs to access their values
-const firstNameInput = document.querySelector(`[data-testid="firstNameInput"]`);
-const lastNameInput = document.querySelector(`[data-testid="lastNameInput"]`);
-const idInput = document.querySelector(`[data-testid="idInput"]`);
-const titleInput = document.querySelector(`[data-testid="titleInput"]`);
-const annualSalaryInput = document.querySelector(`[data-testid="annualSalaryInput"]`);
+const firstNameInput = document.querySelector("#firstNameInput");
+const lastNameInput = document.querySelector("#lastNameInput");
+const idInput = document.querySelector("#idInput");
+const titleInput = document.querySelector("#titleInput");
+const annualSalaryInput = document.querySelector("#salaryInput");
 
 // Create function to add employees to our list/table
 function addEmployee(event) {
@@ -33,9 +33,9 @@ function addEmployee(event) {
 
 // Add function to reset form inputs (quirk: cannot use vars set above for this DOM modification - why?)
 function resetForm() {
-  document.querySelector(`[data-testid="firstNameInput"]`).value = '';
-  document.querySelector(`[data-testid="lastNameInput"]`).value = '';
-  document.querySelector(`[data-testid="idInput"]`).value = '';
-  document.querySelector(`[data-testid="titleInput"]`).value = '';
-  document.querySelector(`[data-testid="annualSalaryInput"]`).value = '';
+  document.querySelector("#firstNameInput").value = '';
+  document.querySelector("#lastNameInput").value = '';
+  document.querySelector("#idInput").value = '';
+  document.querySelector("#titleInput").value = '';
+  document.querySelector("#salaryInput").value = '';
 }
