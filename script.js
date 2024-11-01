@@ -1,6 +1,9 @@
 // Get all form inputs to access their values
 let firstNameInput = document.querySelector(`[data-testid="firstNameInput"]`);
 let lastNameInput = document.querySelector(`[data-testid="lastNameInput"]`);
+let idInput = document.querySelector(`[data-testid="idInput"]`);
+let titleInput = document.querySelector(`[data-testid="titleInput"]`);
+let annualSalaryInput = document.querySelector(`[data-testid="annualSalaryInput"]`);
 
 // Create function to add employees to our list/table
 function addEmployee(event) {
@@ -8,7 +11,7 @@ function addEmployee(event) {
   event.preventDefault();
 
   // Log the form input values
-  console.log(firstNameInput.value, lastNameInput.value);
+  console.log(firstNameInput.value, lastNameInput.value, idInput.value, titleInput.value, annualSalaryInput.value);
 
   // Reset our add employee form so it's ready for the next addition
   resetForm();
@@ -18,4 +21,7 @@ function addEmployee(event) {
 function resetForm() {
   document.querySelector(`[data-testid="firstNameInput"]`).value = '';
   document.querySelector(`[data-testid="lastNameInput"]`).value = '';
+  document.querySelector(`[data-testid="idInput"]`).value = '';
+  document.querySelector(`[data-testid="titleInput"]`).value = '';
+  document.querySelector(`[data-testid="annualSalaryInput"]`).value = '';
 }
