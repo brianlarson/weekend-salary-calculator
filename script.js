@@ -31,6 +31,10 @@ function addEmployee(event) {
   // Insert the new employee row (<tr>) to our HTML table if all fields have data
   if (isFormValid()) {
 
+    // Format salary input value to USD
+    const salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }
+    const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(annualSalaryInput.value);
+
     // Add the new employee row to <tbody>
     tableBody.innerHTML += `
       <tr>
@@ -38,7 +42,7 @@ function addEmployee(event) {
         <td>${lastNameInput.value}</td>
         <td>${idInput.value}</td>
         <td>${titleInput.value}</td>
-        <td>${annualSalaryInput.value}</td>
+        <td>${formattedSalary}</td>
         <td><button onClick="deleteEmployee(event)">Delete</button></td>
       </tr>
     `;
