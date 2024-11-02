@@ -5,6 +5,10 @@ const idInput = document.querySelector("#idInput");
 const titleInput = document.querySelector("#titleInput");
 const annualSalaryInput = document.querySelector("#salaryInput");
 
+// Get all of our employee form inputs as an array to check for values and clear them upon
+// successful submission
+let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSalaryInput];
+
 // Create function to add employees to our list/table
 function addEmployee(event) {
 
@@ -13,9 +17,6 @@ function addEmployee(event) {
 
   // Get the tbody element so we can insert employee row elements (<tr>) into it
   const tableBody = document.querySelector("#employeeList tbody");
-
-  // Get all of our employee form inputs as an array
-  let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSalaryInput];
 
   // Create function to check if form is fully completed and valid for below
   function isFormValid() {
@@ -26,7 +27,6 @@ function addEmployee(event) {
     }
     return true;
   }
-  console.log(isFormValid());
 
   // Insert the new employee row (<tr>) to our HTML table if all fields have data
   if (isFormValid()) {
@@ -55,15 +55,14 @@ function addEmployee(event) {
 
 }
 
-// Add function to reset form inputs (quirk: cannot use vars set above
-// for this DOM modification - why?)
+// Add function to reset all form inputs after successful submission
 function resetForm() {
   for (const input of formInputs) {
     input.value = '';
   }
 }
 
-// Add function to delete employee entries
+// Add function to delete employee entries one at a time
 function deleteEmployee(event) {
   event.target.parentNode.parentNode.remove();
 }
