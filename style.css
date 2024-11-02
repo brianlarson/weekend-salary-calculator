@@ -41,9 +41,15 @@ body {
   padding: 12px;
 }
 
-.list-area__table tbody tr:nth-child(odd){
+.list-area__table tbody tr:nth-child(odd) {
   background: #fcfcfc;
 }
-.list-area__table tbody tr:nth-child(even){
+.list-area__table tbody tr:nth-child(even) {
   background: #dcdcdc;
+}
+
+.list-area__empty-row {
+  color: gray;
+  font-style: italic;
+  text-align: center;
 }

@@ -14,30 +14,53 @@ function addEmployee(event) {
   // Get the tbody element so we can insert employee row elements (<tr>) into it
   const tableBody = document.querySelector("#employeeList tbody");
 
-  // Insert the new employee row (<tr>) to our HTML table
-  tableBody.innerHTML += `
-    <tr>
-      <td>${firstNameInput.value}</td>
-      <td>${lastNameInput.value}</td>
-      <td>${idInput.value}</td>
-      <td>${titleInput.value}</td>
-      <td>${annualSalaryInput.value}</td>
-      <td><button onClick="deleteEmployee(event)">Delete</button></td>
-    </tr>
-  `;
+  // Get all of our employee form inputs as an array
+  let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSalaryInput];
 
-  // Reset our add employee form so it's ready for the next addition
-  resetForm();
+  // Create function to check if form is fully completed and valid for below
+  function isFormValid() {
+    for (const input of formInputs) {
+      if (input.value === '') {
+        return false;
+      }
+    }
+    return true;
+  }
+  console.log(isFormValid());
+
+  // Insert the new employee row (<tr>) to our HTML table if all fields have data
+  if (isFormValid()) {
+
+    // Add the new employee row to <tbody>
+    tableBody.innerHTML += `
+      <tr>
+        <td>${firstNameInput.value}</td>
+        <td>${lastNameInput.value}</td>
+        <td>${idInput.value}</td>
+        <td>${titleInput.value}</td>
+        <td>${annualSalaryInput.value}</td>
+        <td><button onClick="deleteEmployee(event)">Delete</button></td>
+      </tr>
+    `;
+
+    // Reset our add employee form so it's ready for the next addition
+    resetForm();
+
+  } else {
+
+    // All inputs don't have a value so throw a helpful error alert
+    alert("Looks like you're missing some employee info. Please try again.");
+
+  }
 
 }
 
-// Add function to reset form inputs (quirk: cannot use vars set above for this DOM modification - why?)
+// Add function to reset form inputs (quirk: cannot use vars set above
+// for this DOM modification - why?)
 function resetForm() {
-  document.querySelector("#firstNameInput").value = '';
-  document.querySelector("#lastNameInput").value = '';
-  document.querySelector("#idInput").value = '';
-  document.querySelector("#titleInput").value = '';
-  document.querySelector("#salaryInput").value = '';
+  for (const input of formInputs) {
+    input.value = '';
+  }
 }
 
 // Add function to delete employee entries
