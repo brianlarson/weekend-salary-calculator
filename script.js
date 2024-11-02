@@ -31,6 +31,9 @@ function addEmployee(event) {
   // Insert the new employee row (<tr>) to our HTML table if all fields have data
   if (isFormValid()) {
 
+    // Update our total monthly cost
+    updateMonthlyCost(Number(annualSalaryInput.value));
+
     // Format salary input value to USD
     const salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }
     const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(annualSalaryInput.value);
@@ -48,7 +51,8 @@ function addEmployee(event) {
     `;
 
     // Reset our add employee form so it's ready for the next addition
-    resetForm();
+    // resetForm();
+
 
   } else {
 
@@ -69,4 +73,13 @@ function resetForm() {
 // Add function to delete employee entries one at a time
 function deleteEmployee(event) {
   event.target.parentNode.parentNode.remove();
+}
+
+// Get location where we're going to be updating our total cost and set inital value
+let totalOutputLocation = document.querySelector("#totalCost");
+let totalMonthlyCost = 0;
+
+// Create function to update total monthly cost in footer
+function updateMonthlyCost(annualSalary) {
+  console.log(totalMonthlyCost += annualSalary);
 }
