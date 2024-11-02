@@ -9,6 +9,13 @@ const annualSalaryInput = document.querySelector("#salaryInput");
 // successful submission
 let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSalaryInput];
 
+// Set arguments for formatting in USD currency
+const salaryArgs = {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+}
+
 // Create function to add employees to our list/table
 function addEmployee(event) {
 
@@ -35,7 +42,6 @@ function addEmployee(event) {
     updateMonthlyCost(Number(annualSalaryInput.value));
 
     // Format salary input value to USD
-    const salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }
     const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(annualSalaryInput.value);
 
     // Add the new employee row to <tbody>
@@ -50,6 +56,7 @@ function addEmployee(event) {
       </tr>
     `;
 
+    // ! DISABLED FOR TESTING
     // Reset our add employee form so it's ready for the next addition
     // resetForm();
 
@@ -81,5 +88,7 @@ let totalMonthlyCost = 0;
 
 // Create function to update total monthly cost in footer
 function updateMonthlyCost(annualSalary) {
-  console.log(totalMonthlyCost += annualSalary);
+  let updatedTotal = (totalMonthlyCost += annualSalary) / 12;
+  const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(updatedTotal);
+  totalOutputLocation.textContent = formattedSalary;
 }
