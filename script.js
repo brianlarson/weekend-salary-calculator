@@ -5,6 +5,16 @@ const idInput = document.querySelector("#idInput");
 const titleInput = document.querySelector("#titleInput");
 const annualSalaryInput = document.querySelector("#salaryInput");
 
+// Test number values
+let salary = "140,000";
+salary.replace(",", "");
+console.log(salary);
+let formattedSalary = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+}).format(salary);
+console.log(formattedSalary);
+
 // Get all of our employee form inputs as an array to check for values and clear them upon
 // successful submission
 let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSalaryInput];
