@@ -53,3 +53,15 @@ body {
   font-style: italic;
   text-align: center;
 }
+
+.warning {
+  color: red;
+  font-weight: bold;
+}
+
+.warning:after {
+  content: " (over budget)";
+  font-style: italic;
+  font-size: small;
+  font-weight: normal;
+}

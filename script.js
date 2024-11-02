@@ -51,15 +51,13 @@ function addEmployee(event) {
         <td>${lastNameInput.value}</td>
         <td>${idInput.value}</td>
         <td>${titleInput.value}</td>
-        <td>${formattedSalary}</td>
-        <td><button onClick="deleteEmployee(event)">Delete</button></td>
+        <td align="right">${formattedSalary}</td>
+        <td align="center"><button onClick="deleteEmployee(event)">Delete</button></td>
       </tr>
     `;
 
-    // ! DISABLED FOR TESTING
     // Reset our add employee form so it's ready for the next addition
-    // resetForm();
-
+    resetForm();
 
   } else {
 
@@ -88,7 +86,23 @@ let totalMonthlyCost = 0;
 
 // Create function to update total monthly cost in footer
 function updateMonthlyCost(annualSalary) {
+
+  // Get the updated total and divide by 12 since we need the monthly salary vs.
+  // annual salary that's incoming
   let updatedTotal = (totalMonthlyCost += annualSalary) / 12;
+
+  // Set the monthly budget
+  const monthlyBudget = 20000;
+
+  // If we're over our budget then style the total monthly output in a red color
+  if (updatedTotal > monthlyBudget) {
+    totalOutputLocation.classList.add('warning');
+  }
+
+  // Format salary total for output
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(updatedTotal);
+
+  // Output the latest salary figure in footer
   totalOutputLocation.textContent = formattedSalary;
+
 }
