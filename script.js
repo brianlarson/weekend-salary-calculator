@@ -45,6 +45,9 @@ function addEmployee(event) {
   // Insert the new employee row (<tr>) to our HTML table if all fields have data
   if (isFormValid()) {
 
+    console.log(annualSalaryInput.value);
+
+
     // Update our total monthly cost
     updateMonthlyCost(Number(annualSalaryInput.value));
 
@@ -58,13 +61,13 @@ function addEmployee(event) {
         <td>${lastNameInput.value}</td>
         <td>${idInput.value}</td>
         <td>${titleInput.value}</td>
-        <td align="right">${formattedSalary}</td>
+        <td align="right" data-salary="">${formattedSalary}</td>
         <td align="center"><button onClick="deleteEmployee(event)">Delete</button></td>
       </tr>
     `;
 
     // Reset our add employee form so it's ready for the next addition
-    resetForm();
+    // resetForm();
 
   } else {
 
@@ -84,7 +87,9 @@ function resetForm() {
 
 // Add function to delete employee entries one at a time
 function deleteEmployee(event) {
-  event.target.parentNode.parentNode.remove();
+  // Remove the employee row by targeting the delete button's grandparent <tr> we're looking
+  // up two levels in the DOM to target the <tr> to be removed with parentElement
+  event.target.parentElement.parentElement.remove();
 }
 
 // Create function to update total monthly cost in footer
