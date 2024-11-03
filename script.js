@@ -16,14 +16,15 @@ const monthlyBudget = 20000;
 let totalOutputLocation = document.querySelector("#totalCost");
 let totalMonthlyCost = 0;
 
+// Get the tbody element so we can insert employee row elements (<tr>) into it
+const tableBody = document.querySelector("#employeeList tbody");
+
 //Create function to add employees to our list/table
 function addEmployee(event) {
 
   // Stop default button behavior where a button in a form refreshes the page
   event.preventDefault();
 
-  // Get the tbody element so we can insert employee row elements (<tr>) into it
-  const tableBody = document.querySelector("#employeeList tbody");
 
   // Create function to check if form is fully completed and valid for below
   function isFormValid() {
