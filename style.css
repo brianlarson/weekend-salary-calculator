@@ -18,3 +18,8 @@ body {
 .table th {
   width: 16.666%;
 }
+
+footer p {
+  width: 100%;
+  text-align: right;
+}
