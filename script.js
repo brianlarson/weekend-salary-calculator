@@ -22,7 +22,7 @@ const tableBody = document.querySelector("#employeeList tbody");
 // Row to display when no employees are present in our table
 const noEmployeesRow = `
   <tr id="noEmployeesRow">
-    <td colspan="6" class="text-center text-secondary"><i>No employees</i></td>
+    <td colspan="6" class="text-center text-secondary fw-semibold fst-italic">No employees</td>
   </tr>
 `;
 
