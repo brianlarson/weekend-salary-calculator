@@ -108,7 +108,7 @@ function addToMonthlyCost(annualSalary) {
     document.querySelector("footer").classList.add('over-budget');
   }
 
-  // Format salary total for output
+  // Format salary total in USD for output
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
 
   // Output the latest salary figure in footer
@@ -135,7 +135,11 @@ function reduceMonthlyTotal(event) {
     document.querySelector("footer").classList.remove('over-budget');
   }
 
-  // Format salary total for output
+  // Handle rounding errors when less than $1 remains. This is an inherent issue with how computers
+  // store decimal numbers internally (eg $0.02 instead of desired $0.00)
+  totalMonthlyCost = totalMonthlyCost < 1 ? 0 : totalMonthlyCost;
+
+  // Format salary total in USD for output
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
 
   // Output the latest salary figure in footer
