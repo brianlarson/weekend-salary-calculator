@@ -103,7 +103,7 @@ function addToMonthlyCost(annualSalary) {
   // let updatedTotal = (totalMonthlyCost += annualSalary) / 12;
   totalMonthlyCost += annualSalary / 12;
 
-  // If we're over our budget then style the total monthly output in a red color
+  // If we're over our budget then style the total monthly output in the footer
   if (totalMonthlyCost > monthlyBudget) {
     document.querySelector("footer").classList.add('over-budget');
   }
@@ -113,8 +113,6 @@ function addToMonthlyCost(annualSalary) {
 
   // Output the latest salary figure in footer
   totalOutputLocation.textContent = formattedSalary;
-
-  console.log("totalMonthlyCost:", totalMonthlyCost.toFixed(2));
 
 }
 
@@ -132,9 +130,15 @@ function reduceMonthlyTotal(event) {
   // Subtract this employees monthly salary from current total monthly cost
   totalMonthlyCost -= amountToSubtract;
 
-  console.log("totalMonthlyCost:", totalMonthlyCost.toFixed(2));
+  // If we're back within our budget then remove styling on our total in the footer
+  if (totalMonthlyCost < monthlyBudget) {
+    document.querySelector("footer").classList.remove('over-budget');
+  }
 
-  // Set total monthly cost but handle numbers going below zero?
-  // console.log(Math.max(0, totalMonthlyCost - 1));
+  // Format salary total for output
+  const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
+
+  // Output the latest salary figure in footer
+  totalOutputLocation.textContent = formattedSalary;
 
 }
