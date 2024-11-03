@@ -23,7 +23,7 @@ const salaryArgs = {
 let totalOutputLocation = document.querySelector("#totalCost");
 let totalMonthlyCost = 0;
 
-// Create function to add employees to our list/table
+//Create function to add employees to our list/table
 function addEmployee(event) {
 
   // Stop default button behavior where a button in a form refreshes the page
@@ -45,9 +45,6 @@ function addEmployee(event) {
   // Insert the new employee row (<tr>) to our HTML table if all fields have data
   if (isFormValid()) {
 
-    console.log(annualSalaryInput.value);
-
-
     // Update our total monthly cost
     addToMonthlyCost(Number(annualSalaryInput.value));
 
@@ -56,12 +53,12 @@ function addEmployee(event) {
 
     // Add the new employee row to <tbody>
     tableBody.innerHTML += `
-      <tr>
+      <tr data-salary="${annualSalaryInput.value}">
         <td>${firstNameInput.value}</td>
         <td>${lastNameInput.value}</td>
         <td>${idInput.value}</td>
         <td>${titleInput.value}</td>
-        <td align="right" data-salary="">${formattedSalary}</td>
+        <td align="right">${formattedSalary}</td>
         <td align="center"><button onClick="deleteEmployee(event)">Delete</button></td>
       </tr>
     `;
@@ -87,9 +84,15 @@ function resetForm() {
 
 // Add function to delete employee entries one at a time
 function deleteEmployee(event) {
+
   // Remove the employee row by targeting the delete button's grandparent <tr> we're looking
   // up two levels in the DOM to target the <tr> to be removed with parentElement
-  event.target.parentElement.parentElement.remove();
+  const rowToDelete = event.target.parentElement.parentElement;
+  rowToDelete.remove();
+
+  // Subtract deleted employee's salary from monthly total in footer
+  reduceMonthlyTotal(event);
+
 }
 
 // Create function to add to total monthly cost in footer when employees are added
@@ -97,17 +100,41 @@ function addToMonthlyCost(annualSalary) {
 
   // Get the updated total and divide by 12 since we need the monthly salary vs.
   // annual salary that's incoming
-  let updatedTotal = (totalMonthlyCost += annualSalary) / 12;
+  // let updatedTotal = (totalMonthlyCost += annualSalary) / 12;
+  totalMonthlyCost += annualSalary / 12;
 
   // If we're over our budget then style the total monthly output in a red color
-  if (updatedTotal > monthlyBudget) {
+  if (totalMonthlyCost > monthlyBudget) {
     document.querySelector("footer").classList.add('over-budget');
   }
 
   // Format salary total for output
-  const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(updatedTotal);
+  const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
 
   // Output the latest salary figure in footer
   totalOutputLocation.textContent = formattedSalary;
+
+  console.log("totalMonthlyCost:", totalMonthlyCost.toFixed(2));
+
+}
+
+// Create function to reduce monthly total when deleting employee rows
+function reduceMonthlyTotal(event) {
+
+  // Get the removed employees raw salary number from data attribute in its table row (<tr>)
+  // we're traveling up two levels from the delete button clicked in the DOM to get the <tr>
+  // and then getting its data attribute value. Divide by twelve for monthly vs annual
+  let amountToSubtract = Number(event.target.parentElement.parentElement.dataset.salary) / 12;
+
+  // Round to nearest number with 2 decimal points
+  amountToSubtract = amountToSubtract.toFixed(2);
+
+  // Subtract this employees monthly salary from current total monthly cost
+  totalMonthlyCost -= amountToSubtract;
+
+  console.log("totalMonthlyCost:", totalMonthlyCost.toFixed(2));
+
+  // Set total monthly cost but handle numbers going below zero?
+  // console.log(Math.max(0, totalMonthlyCost - 1));
 
 }
