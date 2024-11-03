@@ -96,7 +96,7 @@ function updateMonthlyCost(annualSalary) {
 
   // If we're over our budget then style the total monthly output in a red color
   if (updatedTotal > monthlyBudget) {
-    document.querySelector("footer.over-budget").classList.add('over-budget');
+    document.querySelector("footer").classList.add('over-budget');
   }
 
   // Format salary total for output
