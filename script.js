@@ -49,7 +49,7 @@ function addEmployee(event) {
 
 
     // Update our total monthly cost
-    updateMonthlyCost(Number(annualSalaryInput.value));
+    addToMonthlyCost(Number(annualSalaryInput.value));
 
     // Format salary input value to USD
     const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(annualSalaryInput.value);
@@ -92,8 +92,8 @@ function deleteEmployee(event) {
   event.target.parentElement.parentElement.remove();
 }
 
-// Create function to update total monthly cost in footer
-function updateMonthlyCost(annualSalary) {
+// Create function to add to total monthly cost in footer when employees are added
+function addToMonthlyCost(annualSalary) {
 
   // Get the updated total and divide by 12 since we need the monthly salary vs.
   // annual salary that's incoming
