@@ -54,12 +54,12 @@ body {
   text-align: center;
 }
 
-.warning {
+.over-budget #totalCost {
   color: red;
   font-weight: bold;
 }
 
-.warning:after {
+.over-budget #totalCost:after {
   content: " (over budget)";
   font-style: italic;
   font-size: small;

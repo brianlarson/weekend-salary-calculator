@@ -9,12 +9,19 @@ const annualSalaryInput = document.querySelector("#salaryInput");
 // successful submission
 let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSalaryInput];
 
+// Set the monthly budget
+const monthlyBudget = 20000;
+
 // Set arguments for formatting in USD currency
 const salaryArgs = {
   style: 'currency',
   currency: 'USD',
   minimumFractionDigits: 2,
 }
+
+// Get location where we're going to be updating our total cost and set inital value of total
+let totalOutputLocation = document.querySelector("#totalCost");
+let totalMonthlyCost = 0;
 
 // Create function to add employees to our list/table
 function addEmployee(event) {
@@ -80,10 +87,6 @@ function deleteEmployee(event) {
   event.target.parentNode.parentNode.remove();
 }
 
-// Get location where we're going to be updating our total cost and set inital value
-let totalOutputLocation = document.querySelector("#totalCost");
-let totalMonthlyCost = 0;
-
 // Create function to update total monthly cost in footer
 function updateMonthlyCost(annualSalary) {
 
@@ -91,12 +94,9 @@ function updateMonthlyCost(annualSalary) {
   // annual salary that's incoming
   let updatedTotal = (totalMonthlyCost += annualSalary) / 12;
 
-  // Set the monthly budget
-  const monthlyBudget = 20000;
-
   // If we're over our budget then style the total monthly output in a red color
   if (updatedTotal > monthlyBudget) {
-    totalOutputLocation.classList.add('warning');
+    document.querySelector("footer.over-budget").classList.add('over-budget');
   }
 
   // Format salary total for output
