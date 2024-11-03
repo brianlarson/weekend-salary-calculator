@@ -9,3 +9,8 @@
   font-size: small;
   font-weight: normal;
 }
+
+/* Keep table header spacing from jumping by setting equal widths */
+.table th {
+  width: 16.666%;
+}

@@ -10,43 +10,39 @@
 <body>
   <div class="container mt-3">
     <header>
-      <h1>Salary Calculator</h1>
+      <h1>💸 &nbsp; Salary Calculator</h1>
       <hr>
     </header>
     <main class="mt-4">
       <section class="mt-3">
         <h2 class="h3">Add Employee</h2>
         <form class="row g-3 mt-1">
-          <!-- USE HARD CODED VALS FOR EASIER TESTING, ALSO COMMENT OUT resetForm() in addEmployee() -->
-          <!-- <input value="TEST" type="text" id="firstNameInput" placeholder="First Name" data-testid="firstNameInput">
-          <input value="TEST" type="text" id="lastNameInput" placeholder="Last Name" data-testid="lastNameInput">
-          <input value="TEST" type="text" id="idInput" placeholder="ID" data-testid="idInput">
-          <input value="TEST" type="text" id="titleInput" placeholder="Title" data-testid="titleInput">
-          <input value="65000" type="number" id="salaryInput" placeholder="Annual Salary" data-testid="annualSalaryInput"> -->
-          <div class="col-4">
-            <input type="text" class="form-control" id="firstNameInput" placeholder="First Name" data-testid="firstNameInput">
+          <div class="col-sm-4">
+            <input type="text" class="form-control p-2" id="firstNameInput" placeholder="First Name" data-testid="firstNameInput">
           </div>
-          <div class="col-4">
-            <input type="text" class="form-control" id="lastNameInput" placeholder="Last Name" data-testid="lastNameInput">
+          <div class="col-sm-4">
+            <input type="text" class="form-control p-2" id="lastNameInput" placeholder="Last Name" data-testid="lastNameInput">
           </div>
-          <div class="col-4">
-            <input type="text" class="form-control" id="idInput" placeholder="ID" data-testid="idInput">
+          <div class="col-sm-4">
+            <input type="text" class="form-control p-2" id="idInput" placeholder="ID" data-testid="idInput">
           </div>
-          <div class="col-4">
-            <input type="text" class="form-control" id="titleInput" placeholder="Title" data-testid="titleInput">
+          <div class="col-sm-4">
+            <input type="text" class="form-control p-2" id="titleInput" placeholder="Title" data-testid="titleInput">
           </div>
-          <div class="col-4">
-            <input type="number" class="form-control" id="salaryInput" placeholder="Annual Salary" data-testid="annualSalaryInput">
+          <div class="col-sm-4">
+            <input type="number" class="form-control p-2" id="salaryInput" placeholder="Annual Salary" data-testid="annualSalaryInput">
           </div>
           <div class="col-12 mt-3">
-            <button class="btn btn-primary" type="submit" onClick="addEmployee(event)" data-testid="submitButton">Submit</button>
+            <button class="btn btn-lg btn-primary px-4" type="submit" onClick="addEmployee(event)" data-testid="submitButton">
+              Submit
+            </button>
           </div>
         </form>
       </section>
       <section class="mt-5">
         <h2 class="h3">Employees</h2>
-        <table id="employeeList" class="table table-light table-striped mt-3 border">
-          <thead>
+        <table id="employeeList" class="table table-light table-striped table-hover mt-4">
+          <thead class="table-dark">
             <th>First Name</th>
             <th>Last Name</th>
             <th>ID</th>
@@ -56,13 +52,13 @@
           </thead>
           <tbody>
               <!-- Employee rows go here -->
-              <!-- <tr class="list-area__empty-row"><td colspan="6">No employees</td></tr> -->
           </tbody>
         </table>
       </section>
     </main>
     <footer>
-      <p><b>Total Monthly:</b> <span id="totalCost">$0.00</span></p>
+      <p class="h5"><b>Total Monthly:</b> <span id="totalCost">$0.00</span></p>
+      <hr>
     </footer>
   </div>
 </body>

@@ -19,12 +19,21 @@ let totalMonthlyCost = 0;
 // Get the tbody element so we can insert employee row elements (<tr>) into it
 const tableBody = document.querySelector("#employeeList tbody");
 
+// Row to display when no employees are present in our table
+const noEmployeesRow = `
+  <tr id="noEmployeesRow">
+    <td colspan="6" class="text-center text-secondary"><i>No employees</i></td>
+  </tr>
+`;
+
+// Show "No employees" row to start
+tableBody.innerHTML = noEmployeesRow;
+
 //Create function to add employees to our list/table
 function addEmployee(event) {
 
   // Stop default button behavior where a button in a form refreshes the page
   event.preventDefault();
-
 
   // Create function to check if form is fully completed and valid for below
   function isFormValid() {
@@ -56,9 +65,16 @@ function addEmployee(event) {
         <td>${idInput.value}</td>
         <td>${titleInput.value}</td>
         <td>${formattedSalary}</td>
-        <td align="center"><button onClick="deleteEmployee(event)" class="btn btn-sm btn-outline-danger">Delete</button></td>
+        <td align="right">
+          <button onClick="deleteEmployee(event)" class="btn btn-sm btn-outline-danger">
+            Delete
+          </button>
+        </td>
       </tr>
     `;
+
+    // Handle no "No employees" row when none exist
+    handleNoEmployeesMsg();
 
     // Reset our add employee form so it's ready for the next addition
     resetForm();
@@ -88,6 +104,9 @@ function deleteEmployee(event) {
   // up two levels in the DOM to target the <tr> to be removed with parentElement
   const rowToDelete = event.target.parentElement.parentElement;
   rowToDelete.remove();
+
+  // Handle no "No employees" row when none exist
+  handleNoEmployeesMsg();
 
   // Subtract deleted employee's salary from monthly total in footer
   reduceMonthlyTotal(event);
@@ -150,4 +169,23 @@ function reduceMonthlyTotal(event) {
   // Output the latest salary figure in footer
   totalOutputLocation.textContent = formattedSalary;
 
+}
+
+// Create function to handle our "No employees" <tr> existence
+function handleNoEmployeesMsg() {
+
+  // Get number of rows in table body
+  const rowCount = document.querySelectorAll("#employeeList tbody tr").length;
+
+  // If there are zero then insert our "No employees" row
+  if (rowCount === 0) {
+    tableBody.innerHTML = noEmployeesRow;
+  } else {
+    // Otherwise get our "No employees" row and…
+    const rowElement = document.querySelector("#noEmployeesRow");
+    // …if it currently exists then remove it
+    if(rowElement) {
+      rowElement.remove();
+    }
+  }
 }
