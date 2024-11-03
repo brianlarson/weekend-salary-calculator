@@ -12,13 +12,6 @@ let formInputs = [firstNameInput, lastNameInput, idInput, titleInput, annualSala
 // Set the monthly budget
 const monthlyBudget = 20000;
 
-// Set arguments for formatting in USD currency
-const salaryArgs = {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 2,
-}
-
 // Get location where we're going to be updating our total cost and set inital value of total
 let totalOutputLocation = document.querySelector("#totalCost");
 let totalMonthlyCost = 0;
@@ -48,6 +41,9 @@ function addEmployee(event) {
     // Update our total monthly cost
     addToMonthlyCost(Number(annualSalaryInput.value));
 
+    // Set arguments for formatting in USD currency (no cents needed usually)
+    let salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 0 };
+
     // Format salary input value to USD
     const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(annualSalaryInput.value);
 
@@ -64,12 +60,12 @@ function addEmployee(event) {
     `;
 
     // Reset our add employee form so it's ready for the next addition
-    // resetForm();
+    resetForm();
 
   } else {
 
     // All inputs don't have a value so throw a helpful error alert
-    alert("Looks like you're missing some employee info. Please try again.");
+    alert(`Looks like you're missing some employee info. Please try again.`);
 
   }
 
@@ -84,6 +80,8 @@ function resetForm() {
 
 // Add function to delete employee entries one at a time
 function deleteEmployee(event) {
+
+  // TODO: Add confirmation dialog to user before proceeding with confirm() with first and last name
 
   // Remove the employee row by targeting the delete button's grandparent <tr> we're looking
   // up two levels in the DOM to target the <tr> to be removed with parentElement
@@ -107,6 +105,9 @@ function addToMonthlyCost(annualSalary) {
   if (totalMonthlyCost > monthlyBudget) {
     document.querySelector("footer").classList.add('over-budget');
   }
+
+  // Set arguments for formatting in USD currency
+  let salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 2 };
 
   // Format salary total in USD for output
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
@@ -138,6 +139,9 @@ function reduceMonthlyTotal(event) {
   // Handle rounding errors when less than $1 remains. This is an inherent issue with how computers
   // store decimal numbers internally (eg $0.02 instead of desired $0.00)
   totalMonthlyCost = totalMonthlyCost < 1 ? 0 : totalMonthlyCost;
+
+  // Set arguments for formatting in USD currency (use cents)
+  let salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 2 };
 
   // Format salary total in USD for output
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
