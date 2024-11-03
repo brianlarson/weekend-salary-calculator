@@ -55,8 +55,8 @@ function addEmployee(event) {
         <td>${lastNameInput.value}</td>
         <td>${idInput.value}</td>
         <td>${titleInput.value}</td>
-        <td align="right">${formattedSalary}</td>
-        <td align="center"><button onClick="deleteEmployee(event)">Delete</button></td>
+        <td>${formattedSalary}</td>
+        <td align="center"><button onClick="deleteEmployee(event)" class="btn btn-sm btn-outline-danger">Delete</button></td>
       </tr>
     `;
 
