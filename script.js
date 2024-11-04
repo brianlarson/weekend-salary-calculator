@@ -98,11 +98,13 @@ function resetForm() {
 // Add function to delete employee entries one at a time
 function deleteEmployee(event) {
 
+  // !FEATURE DISABLED FOR AUTOMATED TESTING
+  // TODO: RE-ENABLE AFTER GRADING
   // Launch confirmation dialog box to double check user's delete action
-  const deleteIsConfirmed = confirm(`‼️ Are you sure you want to delete this employee from the list?`);
+  // const deleteIsConfirmed = confirm(`‼️ Are you sure you want to delete this employee from the list?`);
 
   // If the user has confirmed that they want to delete the employee row then do it
-  if (deleteIsConfirmed) {
+  // if (deleteIsConfirmed) {
 
     // Remove the employee row by targeting the delete button's grandparent <tr> we're looking
     // up two levels in the DOM to target the <tr> to be removed with parentElement
@@ -115,7 +117,7 @@ function deleteEmployee(event) {
     // Subtract deleted employee's salary from monthly total in footer
     reduceMonthlyTotal(event);
 
-  }
+  // }
 
 }
 
