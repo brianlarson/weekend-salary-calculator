@@ -19,6 +19,7 @@ body {
 .table th {
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2;
   width: 16.666%;
 }
 

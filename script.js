@@ -57,7 +57,7 @@ function addEmployee(event) {
   if (isFormValid()) {
 
     // Update our total monthly cost
-    addToMonthlyCost(Number(annualSalaryInput.value));
+    addToMonthlyTotal(Number(annualSalaryInput.value));
 
     // Set arguments for formatting in USD currency (no cents needed usually)
     let salaryArgs = { style: 'currency', currency: 'USD', minimumFractionDigits: 0 };
@@ -134,7 +134,7 @@ function deleteEmployee(event) {
 }
 
 // Create function to add to total monthly cost in footer when employees are added
-function addToMonthlyCost(annualSalary) {
+function addToMonthlyTotal(annualSalary) {
 
   // Get the updated total and divide by 12 since we need the monthly salary vs.
   // annual salary that's incoming
@@ -191,6 +191,12 @@ function reduceMonthlyTotal(event) {
 
 }
 
+// Create function to reset monthly total in footer to $0.00
+function resetMonthlyTotal() {
+  totalMonthlyCost = 0;
+  totalOutputLocation.textContent = "$0.00";
+}
+
 // Create function to handle our "No employees" <tr> existence
 function handleNoEmployeesMsg() {
 
@@ -221,5 +227,22 @@ function handleDeleteAllBtn() {
 
 // Create function to delete all employee rows if they exist
 function deleteAllEmployees() {
+
+  // Launch confirmation to make sure user wants to delete all employee rows
+  const deleteConfirmed = confirm(`‼️ Whoah! Are you sure you want to delete all employees!?`);
+
+  // Make sure user clicked Ok in dialog box
+  if (deleteConfirmed) {
+
+    // Show "No employees" row and remove all existing employee rows
+    tableBody.innerHTML = noEmployeesRow;
+
+    // Remove Delete All Employees button
+    deleteAllBtnWrapper.innerHTML = '';
+
+    // Reset total monthly in footer
+    resetMonthlyTotal();
+
+  }
 
 }
