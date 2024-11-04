@@ -82,7 +82,7 @@ function addEmployee(event) {
   } else {
 
     // All inputs don't have a value so throw a helpful error alert
-    alert(`Looks like you're missing some employee info. Please try again.`);
+    alert(`‼️ Looks like you're missing some employee info. Please try again.`);
 
   }
 
@@ -98,18 +98,24 @@ function resetForm() {
 // Add function to delete employee entries one at a time
 function deleteEmployee(event) {
 
-  // TODO: Add confirmation dialog to user before proceeding with confirm() with first and last name
+  // Launch confirmation dialog box to double check user's delete action
+  const deleteIsConfirmed = confirm(`‼️ Are you sure you want to delete this employee from the list?`);
 
-  // Remove the employee row by targeting the delete button's grandparent <tr> we're looking
-  // up two levels in the DOM to target the <tr> to be removed with parentElement
-  const rowToDelete = event.target.parentElement.parentElement;
-  rowToDelete.remove();
+  // If the user has confirmed that they want to delete the employee row then do it
+  if (deleteIsConfirmed) {
 
-  // Handle no "No employees" row when none exist
-  handleNoEmployeesMsg();
+    // Remove the employee row by targeting the delete button's grandparent <tr> we're looking
+    // up two levels in the DOM to target the <tr> to be removed with parentElement
+    const rowToDelete = event.target.parentElement.parentElement;
+    rowToDelete.remove();
 
-  // Subtract deleted employee's salary from monthly total in footer
-  reduceMonthlyTotal(event);
+    // Handle no "No employees" row when none exist
+    handleNoEmployeesMsg();
+
+    // Subtract deleted employee's salary from monthly total in footer
+    reduceMonthlyTotal(event);
+
+  }
 
 }
 
