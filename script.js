@@ -29,6 +29,14 @@ const noEmployeesRow = `
 // Show "No employees" row to start
 tableBody.innerHTML = noEmployeesRow;
 
+// Delete All location for inserting and removing
+const deleteAllBtnWrapper = document.querySelector("#deleteAllBtnWrapper");
+
+// Delete All button HTML template for hiding and showing
+const deleteAllBtn = `
+  <button onClick="deleteAllEmployees()" class="btn btn-sm btn-outline-danger fw-normal float-right rounded-0 float-end">Delete All Employees</a>
+`;
+
 //Create function to add employees to our list/table
 function addEmployee(event) {
 
@@ -66,7 +74,7 @@ function addEmployee(event) {
         <td>${titleInput.value}</td>
         <td>${formattedSalary}</td>
         <td align="center">
-          <button onClick="deleteEmployee(event)" class="btn btn-sm btn-outline-danger">
+          <button onClick="deleteEmployee(event)" class="btn btn-sm btn-outline-danger rounded-0">
             Delete
           </button>
         </td>
@@ -76,8 +84,11 @@ function addEmployee(event) {
     // Handle no "No employees" row when none exist
     handleNoEmployeesMsg();
 
+    // Show Delete All Employees button if employee rows exist (No Employees msg isn't present)
+    handleDeleteAllBtn();
+
     // Reset our add employee form so it's ready for the next addition
-    resetForm();
+    // resetForm();
 
   } else {
 
@@ -111,6 +122,9 @@ function deleteEmployee(event) {
 
     // Handle no "No employees" row when none exist
     handleNoEmployeesMsg();
+
+    // If no employee rows exist remove our Delete All button
+    handleDeleteAllBtn();
 
     // Subtract deleted employee's salary from monthly total in footer
     reduceMonthlyTotal(event);
@@ -194,4 +208,18 @@ function handleNoEmployeesMsg() {
       rowElement.remove();
     }
   }
+}
+
+// Create function to handle whether or not to show the Delete All Employees button
+function handleDeleteAllBtn() {
+  if (document.querySelector("#noEmployeesRow") === null) {
+    deleteAllBtnWrapper.innerHTML = deleteAllBtn;
+  } else {
+    deleteAllBtnWrapper.innerHTML = '';
+  }
+}
+
+// Create function to delete all employee rows if they exist
+function deleteAllEmployees() {
+
 }
