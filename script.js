@@ -88,7 +88,7 @@ function addEmployee(event) {
     handleDeleteAllBtn();
 
     // Reset our add employee form so it's ready for the next addition
-    // resetForm();
+    resetForm();
 
   } else {
 
@@ -153,7 +153,7 @@ function addToMonthlyTotal(annualSalary) {
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
 
   // Output the latest salary figure in footer
-  totalOutputLocation.textContent = formattedSalary;
+  totalOutputLocation.innerText = formattedSalary;
 
 }
 
@@ -187,14 +187,14 @@ function reduceMonthlyTotal(event) {
   const formattedSalary = new Intl.NumberFormat('en-US', salaryArgs).format(totalMonthlyCost);
 
   // Output the latest salary figure in footer
-  totalOutputLocation.textContent = formattedSalary;
+  totalOutputLocation.innerText = formattedSalary;
 
 }
 
 // Create function to reset monthly total in footer to $0.00
 function resetMonthlyTotal() {
   totalMonthlyCost = 0;
-  totalOutputLocation.textContent = "$0.00";
+  totalOutputLocation.innerText = "$0.00";
 }
 
 // Create function to handle our "No employees" <tr> existence
